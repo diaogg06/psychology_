@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Психогигиена — карманная памятка</title>
+<style>
+  /* ===== БАЗА ===== */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', 'PT Sans', Arial, sans-serif;
+    background: #F7F9FC;
+    color: #1D3557;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ===== ЦВЕТА (флэт-палитра) ===== */
+  :root {
+    --navy: #1D3557;
+    --blue: #457B9D;
+    --light-blue: #A8DADC;
+    --mint: #B8E0D2;
+    --cream: #F1FAEE;
+    --red: #E63946;
+    --yellow: #F4A261;
+    --green: #2A9D8F;
+  }
+
+  /* ===== НАВИГАЦИЯ ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: var(--navy);
+    padding: 14px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  }
+  nav .logo {
+    color: var(--cream);
+    font-weight: 700; font-size: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  nav ul { display: flex; gap: 20px; list-style: none; }
+  nav a {
+    color: var(--light-blue);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--cream); }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 100px 24px 60px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before, .hero::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(168, 218, 220, 0.1);
+  }
+  .hero::before { width: 400px; height: 400px; top: -100px; right: -100px; }
+  .hero::after { width: 300px; height: 300px; bottom: -80px; left: -80px; }
+
+  .hero-icon {
+    font-size: 64px; margin-bottom: 24px;
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 800;
+    margin-bottom: 16px;
+    line-height: 1.15;
+    max-width: 800px;
+  }
+  .hero p {
+    font-size: clamp(15px, 2vw, 18px);
+    color: var(--light-blue);
+    max-width: 600px;
+    margin-bottom: 32px;
+  }
+  .hero-quote {
+    font-style: italic;
+    color: var(--cream);
+    opacity: 0.85;
+    font-size: 15px;
+    border-left: 3px solid var(--light-blue);
+    padding-left: 16px;
+    max-width: 500px;
+    text-align: left;
+    margin-bottom: 40px;
+  }
+  .btn {
+    display: inline-block;
+    background: var(--mint);
+    color: var(--navy);
+    padding: 14px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none; cursor: pointer;
+  }
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(184, 224, 210, 0.4);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--cream);
+    border: 2px solid var(--light-blue);
+    margin-left: 12px;
+  }
+  .btn-outline:hover {
+    background: var(--light-blue);
+    color: var(--navy);
+  }
+
+  /* ===== СЕКЦИИ ===== */
+  section { padding: 80px 24px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-title {
+    text-align: center;
+    font-size: clamp(24px, 3.5vw, 36px);
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+  .section-subtitle {
+    text-align: center;
+    color: var(--blue);
+    font-size: 16px;
+    margin-bottom: 48px;
+  }
+
+  /* ===== БЛОК 5 ШАГОВ ===== */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  .step {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px 20px;
+    text-align: center;
+    transition: transform 0.25s, box-shadow 0.25s;
+    border-bottom: 4px solid var(--light-blue);
+  }
+  .step:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(29, 53, 87, 0.1);
+  }
+  .step-icon { font-size: 40px; margin-bottom: 12px; }
+  .step h3 { font-size: 17px; margin-bottom: 8px; color: var(--navy); }
+  .step p { font-size: 14px; color: var(--blue); }
+
+  /* ===== СКОРАЯ ПОМОЩЬ ===== */
+  .first-aid { background: var(--cream); }
+  .aid-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .aid-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex; gap: 14px; align-items: flex-start;
+    border-left: 4px solid var(--red);
+    transition: transform 0.2s;
+  }
+  .aid-card:hover { transform: translateX(4px); }
+  .aid-card .emoji { font-size: 26px; flex-shrink: 0; }
+  .aid-card h4 { font-size: 15px; margin-bottom: 4px; }
+  .aid-card p { font-size: 13.5px; color: var(--blue); }
+
+  /* ===== КРАСНЫЕ ФЛАГИ ===== */
+  .flags { background: #fff; }
+  .flags-box {
+    background: #FFF0F0;
+    border: 2px solid var(--red);
+    border-radius: 20px;
+    padding: 40px 32px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .flags-box h3 {
+    color: var(--red);
+    font-size: 22px;
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .flags-box ul { list-style: none; }
+  .flags-box li {
+    padding: 12px 0;
+    border-bottom: 1px dashed #ffd6d6;
+    font-size: 15px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .flags-box li:last-child { border-bottom: none; }
+  .flags-box .note {
+    margin-top: 24px;
+    padding: 16px;
+    background: var(--red);
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  /* ===== ТЕЛЕФОНЫ ===== */
+  .phones { background: var(--navy); color: var(--cream); }
+  .phones .section-title { color: var(--cream); }
+  .phones .section-subtitle { color: var(--light-blue); }
+  .phone-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .phone-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(168, 218, 220, 0.3);
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+    transition: background 0.25s, transform 0.25s;
+  }
+  .phone-card:hover {
+    background: rgba(168, 218, 220, 0.12);
+    transform: translateY(-4px);
+  }
+  .phone-card .emoji { font-size: 36px; margin-bottom: 12px; }
+  .phone-card h4 { font-size: 15px; margin-bottom: 8px; color: var(--light-blue); }
+  .phone-card .number {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--mint);
+    letter-spacing: 0.5px;
+  }
+  .phone-card p { font-size: 13px; color: var(--light-blue); margin-top: 8px; }
+
+  /* ===== ЗОЛОТЫЕ ПРАВИЛА ===== */
+  .rules { background: var(--mint); }
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .rule {
+    background: rgba(255,255,255,0.6);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex; gap: 14px; align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .rule:hover { background: #fff; }
+  .rule-num {
+    background: var(--navy);
+    color: var(--cream);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+
+  /* ===== 4 СФЕРЫ ===== */
+  .spheres { background: #fff; }
+  .spheres-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .sphere {
+    border-radius: 16px;
+    padding: 28px 22px;
+    text-align: center;
+    transition: transform 0.25s;
+  }
+  .sphere:hover { transform: scale(1.04); }
+  .sphere:nth-child(1) { background: #E8F4F8; border-bottom: 4px solid var(--blue); }
+  .sphere:nth-child(2) { background: #FFF1E6; border-bottom: 4px solid var(--yellow); }
+  .sphere:nth-child(3) { background: #E6F5F0; border-bottom: 4px solid var(--green); }
+  .sphere:nth-child(4) { background: #F0EAFB; border-bottom: 4px solid #8E7CC3; }
+  .sphere .emoji { font-size: 40px; margin-bottom: 12px; }
+  .sphere h4 { font-size: 17px; margin-bottom: 8px; }
+  .sphere p { font-size: 13.5px; color: var(--blue); }
+
+  /* ===== ПРАВИЛО 90/20 ===== */
+  .rule9020 {
+    background: var(--blue);
+    color: var(--cream);
+    text-align: center;
+    padding: 60px 24px;
+    border-radius: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .rule9020 h3 { font-size: 28px; margin-bottom: 12px; }
+  .rule9020 p { color: var(--light-blue); font-size: 16px; }
+
+  /* ===== ФРАЗЫ ===== */
+  .phrases { background: var(--cream); }
+  .phrases-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .phrase {
+    background: #fff;
+    border-radius: 50px;
+    padding: 18px 28px;
+    text-align: center;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--navy);
+    box-shadow: 0 4px 12px rgba(29, 53, 87, 0.06);
+  }
+
+  /* ===== ФУТЕР ===== */
+  footer {
+    background: var(--navy);
+    color: var(--light-blue);
+    text-align: center;
+    padding: 40px 24px 30px;
+    font-size: 14px;
+  }
+  footer .heart {
+    font-size: 28px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  footer p { margin-bottom: 8px; }
+  footer .small { font-size: 12px; opacity: 0.6; margin-top: 16px; }
+
+  /* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+  @media (max-width: 640px) {
+    nav ul { display: none; }
+    section { padding: 60px 20px; }
+    .hero { padding: 90px 20px 50px; }
+    .btn-outline { margin-left: 0; margin-top: 12px; display: block; }
+    .flags-box { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== НАВИГАЦИЯ ===== -->
+<nav>
+  <div class="logo">🧠 Психогигиена</div>
+  <ul>
+    <li><a href="#steps">Минимум</a></li>
+    <li><a href="#aid">Скорая</a></li>
+    <li><a href="#flags">Флаги</a></li>
+    <li><a href="#phones">Помощь</a></li>
+    <li><a href="#rules">Правила</a></li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-icon">🧠</div>
+  <h1>Психика — такой же орган, как сердце</h1>
+  <p>И ей тоже нужна гигиена. Карманная памятка, которая всегда с тобой.</p>
+  <div class="hero-quote">
+    «Забота о психике так же важна, как и забота о теле. Инвестируя в неё, ты повышаешь качество жизни.»
+  </div>
+  <div>
+    <a href="#steps" class="btn">Начать с минимума →</a>
+    <a href="#phones" class="btn btn-outline">Срочная помощь</a>
+  </div>
+</section>
+
+<!-- ===== ЕЖЕДНЕВНЫЙ МИНИМУМ ===== -->
+<section id="steps">
+  <div class="container">
+    <h2 class="section-title">⏰ Ежедневный минимум</h2>
+    <p class="section-subtitle">5 шагов, которые держат психику в форме</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-icon">😴</div>
+        <h3>Сон</h3>
+        <p>7–8 часов. Ложись и вставай в одно время. Без гаджетов за час до сна.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">🌬️</div>
+        <h3>Дыхание 4-7-8</h3>
+        <p>Вдох 4 сек → задержка 7 сек → выдох 8 сек. Повтори 4 раза.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">🏃</div>
+        <h3>Движение</h3>
+        <p>30 минут ходьбы или зарядки. Это естественный антидепрессант.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">💧</div>
+        <h3>Вода и еда</h3>
+        <p>2 литра воды. Меньше сахара и кофеина — меньше тревоги.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">🤝</div>
+        <h3>Общение</h3>
+        <p>Хотя бы 1 живой разговор в день. Не переписка — голос или встреча.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== СКОРАЯ ПОМОЩЬ ===== -->
+<section id="aid" class="first-aid">
+  <div class="container">
+    <h2 class="section-title">🛠️ Если накрыло</h2>
+    <p class="section-subtitle">Скорая психологическая помощь за 1 минуту</p>
+    <div class="aid-grid">
+      <div class="aid-card">
+        <span class="emoji">😰</span>
+        <div><h4>Тревога</h4><p>Дыхание 4-7-8 + холодная вода на лицо</p></div>
+      </div>
+      <div class="aid-card">
+        <span class="emoji">😡</span>
+        <div><h4>Злость</h4><p>10 приседаний или быстрая ходьба</p></div>
+      </div>
+      <div class="aid-card">
+        <span class="emoji">😔</span>
+        <div><h4>Грусть</h4><p>Позвони близкому, выйди на улицу</p></div>
+      </div>
+      <div class="aid-card">
+        <span class="emoji">🤯</span>
+        <div><h4>Мысли не остановить</h4><p>Запиши их на бумагу — потом разберёшь</p></div>
+      </div>
+      <div class="aid-card">
+        <span class="emoji">😴</span>
+        <div><h4>Не могу уснуть</h4><p>Проветри, убери телефон, посчитай дыхания</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== КРАСНЫЕ ФЛАГИ ===== -->
+<section id="flags" class="flags">
+  <div class="container">
+    <h2 class="section-title">🚩 Красные флаги</h2>
+    <p class="section-subtitle">Если это длится 2+ недели — пора к специалисту</p>
+    <div class="flags-box">
+      <h3>⚠️ Обратись за помощью, если:</h3>
+      <ul>
+        <li>😔 подавленное настроение почти каждый день</li>
+        <li>😰 постоянная тревога или панические атаки</li>
+        <li>😴 нарушен сон или аппетит</li>
+        <li>🚫 потеря интереса к тому, что раньше радовало</li>
+        <li>💭 мысли о самоповреждении</li>
+      </ul>
+      <div class="note">❗ Это не слабость — это забота о себе</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ТЕЛЕФОНЫ ===== -->
+<section id="phones" class="phones">
+  <div class="container">
+    <h2 class="section-title">📞 Куда обратиться</h2>
+    <p class="section-subtitle">Бесплатно. Анонимно. Круглосуточно.</p>
+    <div class="phone-grid">
+      <div class="phone-card">
+        <div class="emoji">☎️</div>
+        <h4>Телефон доверия</h4>
+        <div class="number">8-800-2000-122</div>
+        <p>Для детей, подростков и родителей</p>
+      </div>
+      <div class="phone-card">
+        <div class="emoji">🆘</div>
+        <h4>Экстренная помощь МЧС</h4>
+        <div class="number">8-495-989-50-50</div>
+        <p>Круглосуточная психологическая помощь</p>
+      </div>
+      <div class="phone-card">
+        <div class="emoji">🏥</div>
+        <h4>Служба психологической помощи</h4>
+        <div class="number">051</div>
+        <p>С городского телефона (Москва)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ПРАВИЛО 90/20 ===== -->
+<section>
+  <div class="container">
+    <div class="rule9020">
+      <h3>⏱️ Правило 90/20</h3>
+      <p>90 минут работы → 20 минут отдыха. Мозг не может держать концентрацию дольше. Перерыв — не роскошь, а необходимость.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ЗОЛОТЫЕ ПРАВИЛА ===== -->
+<section id="rules" class="rules">
+  <div class="container">
+    <h2 class="section-title">💡 Золотые правила</h2>
+    <p class="section-subtitle">7 напоминаний, которые стоит держать в голове</p>
+    <div class="rules-grid">
+      <div class="rule"><span class="rule-num">1</span> Сон — всему голова. Не выспался → всё остальное не работает.</div>
+      <div class="rule"><span class="rule-num">2</span> Движение лечит. 30 минут ходьбы лучше таблетки от стресса.</div>
+      <div class="rule"><span class="rule-num">3</span> Говори. Молчание = накопление напряжения.</div>
+      <div class="rule"><span class="rule-num">4</span> Границы — это не эгоизм. Умей сказать «нет».</div>
+      <div class="rule"><span class="rule-num">5</span> Проси помощь. Это признак силы, а не слабости.</div>
+      <div class="rule"><span class="rule-num">6</span> Отдых — это не лень. Это инвестиция в себя.</div>
+      <div class="rule"><span class="rule-num">7</span> Ты не обязан быть продуктивным 24/7.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4 СФЕРЫ ===== -->
+<section class="spheres">
+  <div class="container">
+    <h2 class="section-title">🌿 4 сферы, где следить за психикой</h2>
+    <p class="section-subtitle">Провал в одной сфере → удар по всем</p>
+    <div class="spheres-grid">
+      <div class="sphere">
+        <div class="emoji">👤</div>
+        <h4>Я сам</h4>
+        <p>Сон, еда, спорт, привычки</p>
+      </div>
+      <div class="sphere">
+        <div class="emoji">👨‍👩‍👧</div>
+        <h4>Семья</h4>
+        <p>Доверие, тепло, разговоры</p>
+      </div>
+      <div class="sphere">
+        <div class="emoji">💼</div>
+        <h4>Работа</h4>
+        <p>Баланс, отдых, климат</p>
+      </div>
+      <div class="sphere">
+        <div class="emoji">📅</div>
+        <h4>Возраст</h4>
+        <p>Учитывай свой этап жизни</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ФРАЗЫ ===== -->
+<section class="phrases">
+  <div class="container">
+    <h2 class="section-title">📝 Фразы-напоминания</h2>
+    <p class="section-subtitle">Проговори их себе, когда трудно</p>
+    <div class="phrases-list">
+      <div class="phrase">«Я имею право на отдых»</div>
+      <div class="phrase">«Я имею право на ошибку»</div>
+      <div class="phrase">«Я имею право сказать "нет"»</div>
+      <div class="phrase">«Я имею право просить о помощи»</div>
+      <div class="phrase">«Я имею право на свои чувства»</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ФУТЕР ===== -->
+<footer>
+  <span class="heart">💙</span>
+  <p><strong>Забота о психике — это не роскошь. Это ежедневная необходимость.</strong></p>
+  <p>Ты этого достоин.</p>
+  <p class="small">Памятка создана в рамках проекта по психогигиене и психопрофилактике</p>
+</footer>
+
+</body>
+</html>
